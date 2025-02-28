@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const BOARD_HEIGHT = canvas.height / BLOCK_SIZE;
     
     // Game states
+    let firstPlay = true; 
     let isGameOver = false;
     let isPaused = true;
     let score = 0;
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pauseSound = new Audio('assets/sounds/Pause.mp3');
     const pieceSound = new Audio('assets/sounds/PieceDrop.mp3');
     backsound.loop = true;
+    let backsoundSpeed = 1;
 
     
     // Create the board array
@@ -36,10 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const TETROMINOS = {
         'I': {
             shape: [
-                [0, 0, 0, 0],
-                [1, 1, 1, 1],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0]
+                [0, 1, 0, 0],
+                [0, 1, 0, 0],
+                [0, 1, 0, 0],
+                [0, 1, 0, 0]
             ],
             color: '#00FFFF'
         },
@@ -129,10 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
         player.nextTetromino = randomTetromino();
         resetPiece();
         
+        firstPlay = false;
         isGameOver = false;
         isPaused = true;
         playBacksound = false;
         backsound.currentTime = 0;
+        backsoundSpeed = 1;
+
+        intro();
         drawGameOver();
         pauseGame();
         startBacksound();
@@ -210,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         shape.forEach((row, y) => {
             row.forEach((value, x) => {
-                if (value) {
+                if (value && firstPlay == false) {
                     nextPieceContext.fillStyle = player.nextTetromino.color;
                     nextPieceContext.fillRect(offsetX + x * blockSize, offsetY + y * blockSize, blockSize, blockSize);
                     nextPieceContext.strokeStyle = '#222';
@@ -244,6 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isGameOver) {
             drawGameOver();
         }
+    }
+
+    function intro() {
+        introOverlay = document.getElementById('introOverlay')
+        return firstPlay ? introOverlay.classList.remove('invisible') : introOverlay.classList.add('invisible');
     }
     
     // Check if there's a collision
@@ -387,6 +398,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Increase speed with level
             dropInterval = Math.max(100, 1000 - (level - 1) * 100);
+
+            // increase backsound speed with level
+            increaseBacksoundSpeed();
             
             updateScore();
         }
@@ -418,12 +432,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Play Backsound
     function startBacksound() {
         playBacksound = !playBacksound;
+        backsound.playbackRate = backsoundSpeed;
     
         if (playBacksound) {
             backsound.play();
         } else {
             backsound.pause();
             backsound.currentTime = 0; // Reset
+        }
+    }
+
+    // Increase the backsound speed
+    function increaseBacksoundSpeed() {
+        backsoundSpeed = Math.max(2, 1 + (level - 1) * 0.1);
+        if (playBacksound) {
+            backsound.playbackRate = backsoundSpeed; 
         }
     }
     
@@ -465,6 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
     player.tetromino = randomTetromino();
     player.nextTetromino = randomTetromino();
     resetPiece();
+    intro();
     
     // Start the game loop
     update();
