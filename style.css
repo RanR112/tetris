@@ -3,7 +3,7 @@
 :root {
     --primary: #6c5ce7;
     --secondary: #a29bfe;
-    --accent: #00cec9;
+    --accent: #5eb9f1;
     --background: #2d3436;
     --card-bg: #343a40;
     --card-highlight: #4a5058;
@@ -19,17 +19,23 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--background);
+    /* background-color: var(--background); */
     color: var(--text);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow: hidden;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: linear-gradient(135deg, #2d3436 0%, #252b2d 100%);
+    background: radial-gradient(ellipse at bottom, #0052A2 0%,#002346 100%);
+}
+
+.stars {
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
 }
 
 h1 {
