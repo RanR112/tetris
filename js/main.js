@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Sounds initialization
     let playBacksound = false;
-    const backsound = new Audio('sounds/Backsound.mp3');
-    const gameOverSound = new Audio('sounds/GameOver.mp3');
-    const pauseSound = new Audio('sounds/Pause.mp3');
-    const pieceSound = new Audio('sounds/PieceDrop.mp3');
+    const backsound = new Audio('assets/sounds/Backsound.mp3');
+    const gameOverSound = new Audio('assets/sounds/GameOver.mp3');
+    const pauseSound = new Audio('assets/sounds/Pause.mp3');
+    const pieceSound = new Audio('assets/sounds/PieceDrop.mp3');
     backsound.loop = true;
 
     

@@ -15,7 +15,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    cursor: url(./assets/circle.png) 10 10, auto;
+    cursor: url(../assets/icons/circle.png) 10 10, auto;
 }
 
 body {
@@ -218,7 +218,7 @@ button {
     position: relative;
     overflow: hidden;
     outline: none;
-    cursor: url(./assets/circle2.png) 10 10, pointer;
+    cursor: url(../assets/icons/icons/circle2.png) 10 10, pointer;
 }
 
 button::before {
