@@ -218,7 +218,7 @@ button {
     position: relative;
     overflow: hidden;
     outline: none;
-    cursor: url(../assets/icons/icons/circle2.png) 10 10, pointer;
+    cursor: url(../assets/icons/circle2.png) 10 10, pointer;
 }
 
 button::before {
