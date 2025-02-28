@@ -20,6 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastTime = 0;
     let dropCounter = 0;
     
+    // Sounds initialization
+    let playBacksound = false;
+    const backsound = new Audio('sounds/Backsound.mp3');
+    const gameOverSound = new Audio('sounds/GameOver.mp3');
+    const pauseSound = new Audio('sounds/Pause.mp3');
+    const pieceSound = new Audio('sounds/PieceDrop.mp3');
+    backsound.loop = true;
+
+    
     // Create the board array
     const board = createBoard(BOARD_WIDTH, BOARD_HEIGHT);
     
@@ -122,8 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         isGameOver = false;
         isPaused = true;
+        playBacksound = false;
+        backsound.currentTime = 0;
         drawGameOver();
         pauseGame();
+        startBacksound();
     }
     
     // Generate a random tetromino
@@ -145,6 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (checkCollision()) {
             isGameOver = true;
             isPaused = true;
+            gameOverSound.currentTime = 1.7;
+            gameOverSound.play();
+            startBacksound();
         }
     }
     
@@ -257,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
             row.forEach((value, x) => {
                 if (value) {
                     board[player.position.y + y][player.position.x + x] = player.tetromino.color;
+                    pieceSound.play();
                 }
             });
         });
@@ -332,6 +348,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function pauseGame() {
         pause = document.getElementById('pauseOverlay')
         isPaused =!isPaused;
+        if (isPaused) {
+            backsound.pause();
+            pauseSound.play();
+        } else if (!isPaused) {
+            backsound.play();
+        }
         return isPaused ? pause.classList.add('visible') : pause.classList.remove('visible');
     }
     
@@ -391,6 +413,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
         draw();
         requestAnimationFrame(update);
+    }
+
+    // Play Backsound
+    function startBacksound() {
+        playBacksound = !playBacksound;
+    
+        if (playBacksound) {
+            backsound.play();
+        } else {
+            backsound.pause();
+            backsound.currentTime = 0; // Reset
+        }
     }
     
     // Event listeners
