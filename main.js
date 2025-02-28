@@ -121,8 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
         resetPiece();
         
         isGameOver = false;
-        isPaused = false;
+        isPaused = true;
         drawGameOver();
+        pauseGame();
     }
     
     // Generate a random tetromino

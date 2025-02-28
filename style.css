@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         
 :root {
-    --primary: #6c5ce7;
-    --secondary: #a29bfe;
+    --primary: #00bfff;
+    --secondary: #1484cd;
     --accent: #5eb9f1;
     --background: #2d3436;
-    --card-bg: #343a40;
-    --card-highlight: #4a5058;
+    --card-bg: #343a4067;
+    --card-highlight: #4a5058a4;
     --text: #f5f6fa;
     --dark-text: #dfe6e9;
 }
@@ -15,6 +15,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    cursor: url(./assets/circle.png) 10 10, auto;
 }
 
 body {
@@ -97,6 +98,7 @@ canvas:hover {
     padding: 20px;
     border-radius: 15px;
     background-color: var(--card-bg);
+    backdrop-filter: blur(3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     overflow: hidden;
@@ -185,7 +187,7 @@ canvas:hover {
     display: inline-block;
     padding: 4px 8px;
     margin-right: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--background);
     border-radius: 5px;
     font-size: 0.8rem;
     min-width: 60px;
@@ -209,13 +211,14 @@ button {
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+    box-shadow: 0 4px 15px rgba(92, 175, 231, 0.4);
     font-weight: 600;
     letter-spacing: 0.5px;
     width: 100%;
     position: relative;
     overflow: hidden;
     outline: none;
+    cursor: url(./assets/circle2.png) 10 10, pointer;
 }
 
 button::before {
@@ -231,7 +234,7 @@ button::before {
 
 button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.6);
+    box-shadow: 0 6px 20px rgba(92, 199, 231, 0.6);
 }
 
 button:hover::before {
