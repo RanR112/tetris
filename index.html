@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Digidaw</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="intro-animation">Tetris Digidaw</h1>
+    <div class="game-container intro-animation">
+        <div class="side-panel">
+            <div class="card controls">
+                <h3>Controls</h3>
+                <div class="controls-grid">
+                    <div class="control-item">
+                        <span class="key">←</span>
+                        <span class="action">Move Left</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">→</span>
+                        <span class="action">Move Right</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">↑</span>
+                        <span class="action">Rotate</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">↓</span>
+                        <span class="action">Move Down</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">Space</span>
+                        <span class="action">Hard Drop</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">P</span>
+                        <span class="action">Pause</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="startBtn">Start Game</button>
+        </div>
+        <div class="glowing-border">
+            <canvas id="tetris" width="240" height="400"></canvas>
+            <div id="pauseOverlay" class="pause-overlay">
+                <div class="pause-text">PAUSED</div>
+            </div>
+            <div id="gameOverlay" class="game-over-overlay">
+                <div class="game-over-text">GAME OVER</div>
+                <div id="finalScore" class="final-score">Final Score: <span id="finalScore">0</span></div>
+            </div>
+        </div>
+        <div class="side-panel">
+            <div class="card next-piece-container">
+                <h3>Next Piece</h3>
+                <canvas id="nextPiece" class="next-piece-canvas" width="100" height="100"></canvas>
+            </div>
+            <div class="card score-panel">
+                <h3>Game Stats</h3>
+                <div class="score-item">
+                    <div class="score-label">Score</div>
+                    <div class="score-value" id="score">0</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Level</div>
+                    <div class="score-value" id="level">1</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Lines</div>
+                    <div class="score-value" id="lines">0</div>
+                </div>
+                <div class="level-indicator">
+                    <div class="level-progress" id="levelProgress" style="width: 0%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
