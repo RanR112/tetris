@@ -444,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Increase the backsound speed
     function increaseBacksoundSpeed() {
-        backsoundSpeed = Math.max(2, 1 + (level - 1) * 0.1);
+        backsoundSpeed = Math.min(1.5, 1 + (level - 1) / 20);
         if (playBacksound) {
             backsound.playbackRate = backsoundSpeed; 
         }
